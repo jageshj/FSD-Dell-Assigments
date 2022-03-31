@@ -1,0 +1,7 @@
+C:\FSD Submission\Phase 1 Submission\obj\Debug\FSD.Net- Submissions.csproj.AssemblyReference.cache
+C:\FSD Submission\Phase 1 Submission\obj\Debug\FSD.Net- Submissions.csproj.CoreCompileInputs.cache
+C:\FSD Submission\Phase 1 Submission\bin\Debug\FSD.Net- Submissions.exe.config
+C:\FSD Submission\Phase 1 Submission\bin\Debug\FSD.Net- Submissions.exe
+C:\FSD Submission\Phase 1 Submission\bin\Debug\FSD.Net- Submissions.pdb
+C:\FSD Submission\Phase 1 Submission\obj\Debug\FSD.Net- Submissions.exe
+C:\FSD Submission\Phase 1 Submission\obj\Debug\FSD.Net- Submissions.pdb
