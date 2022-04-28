@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 using System.Threading.Tasks;
 using Phase2_Submission.Model;
-using System.Data.Entity;
+//using System.Data.Entity;
 
 namespace MumbaiPharma2.Controllers
 {
@@ -33,15 +33,23 @@ namespace MumbaiPharma2.Controllers
 
 
 
-
-        [HttpGet()]
-
-        //   [Authorize(Policy = "Isadmin")]
+        [HttpGet]
         [AllowAnonymous]
-        public List<Product> Get()
+        public IEnumerable<Product> GetProd()
         {
-            return _db.Products.ToList();
+            var Product = _db.Products
+            .Include(p => p.CartDetails)
+            .ToList();
+
+            return _db.Products;
+            //return _db.Carts
+            //  .Include(p => p.CartDetails)
+            //.ToList(); 
         }
+
+
+
+
 
         [HttpGet("{id}")]
         //[Authorize(Policy = "Isadmin")]

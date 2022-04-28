@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Phase2_Submission.Model;
 using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 
 namespace Phase2_Submission.Controllers
 {
@@ -47,19 +48,52 @@ namespace Phase2_Submission.Controllers
 
 
 
+
         [HttpGet]
         [AllowAnonymous]
-        public List<User> Get()
+        public IEnumerable<User> GetUser()
         {
-            return _db.Users.ToList();
+            var User = _db.Users
+             .Include(p => p.Carts)
+             .ToList();
+
+            return _db.Users;
+           
         }
 
-        [HttpGet("{id}")]
-        [Authorize(Policy = "Isadmin")]
-        public User Get(int id)
+
+        [HttpGet("{userID}")]
+        [AllowAnonymous]
+        //  [Authorize(Policy = "Isadmin")]
+        public async Task<ActionResult<IEnumerable<User>>> GetUser([FromRoute] int userID)
         {
-            return _db.Users.Find(id);
+            //var User = _db.Users.Find(id);
+            //return User
+            //         .Include(p => p.Carts.Where(Cart => Cart.CartId = 
+
+            //         )
+            //        .ToList();
+
+
+            var result = await _db.Users.FindAsync(userID);
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return await _db.Users.Where(m => m.UserId == userID).ToListAsync();
+
+
         }
+
+
+
+
+
+
+
+
+
 
         [AllowAnonymous]
         [HttpPut]

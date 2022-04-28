@@ -63,13 +63,41 @@ namespace Phase2_Submission.Controllers
 
 
 
-        [HttpGet("{id}")]
-        //[Authorize(Policy = "Isadmin")]
+        [HttpGet("ByCartID/{CartId}")]
+       
         [AllowAnonymous]
-        public Cart Get(int id)
+        //  [Authorize(Policy = "Isadmin")]
+        public async Task<ActionResult<IEnumerable<Cart>>> GetCart([FromRoute] int CartId)
         {
-            return _db.Carts.Find(id);
+            
+
+            var result = await _db.Carts.FindAsync(CartId);
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return await _db.Carts.Where(m => m.CartId == CartId)
+                .Include(o=> o.CartDetails)
+                .ToListAsync();
+
+
         }
+
+
+        [HttpGet("ByUserID/{Userid}")]
+        [AllowAnonymous]
+        //  [Authorize(Policy = "Isadmin")]
+        public async Task<ActionResult<IEnumerable<Cart>>> GetCartbyUser([FromRoute] int Userid)
+        {
+
+
+            return await _db.Carts.Where(m => m.OwnerUserId == Userid).ToListAsync();
+
+
+        }
+
+
 
         [AllowAnonymous]
         [HttpPut]
@@ -129,6 +157,19 @@ namespace Phase2_Submission.Controllers
             return Ok($"Succesfully Deleted {id}");
 
         }
+
+        [AllowAnonymous]
+        [HttpPut]
+        //[Authorize(Policy = "Isadmin")]
+        public string Put(Order model)
+        {
+            _db.Order.Add(model);
+            _db.SaveChanges();
+
+            return "Success";
+
+        }
+
 
         //private User GetCurrentUser()
         //{
