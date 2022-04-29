@@ -32,9 +32,9 @@ namespace Phase2_Submission
                 options.UseSqlServer(
                     Configuration.GetConnectionString("UserConnection")));
 
-            // services.AddControllers();
-            services.AddControllers().AddJsonOptions(x =>
-                    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+             services.AddControllers();
+            //services.AddControllers().AddJsonOptions(x =>
+              //      x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
             //var key = "This is my first Test Key";
 
@@ -117,7 +117,7 @@ namespace Phase2_Submission
             }
 
             app.UseCors(options =>
-             options.WithOrigins("http://localhost:1784")
+             options.WithOrigins("http://localhost:16988")
             .AllowAnyHeader()
             .AllowAnyMethod());
             app.UseRouting();

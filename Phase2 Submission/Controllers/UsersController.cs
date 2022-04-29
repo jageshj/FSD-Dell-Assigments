@@ -63,8 +63,8 @@ namespace Phase2_Submission.Controllers
 
 
         [HttpGet("{userID}")]
-        [AllowAnonymous]
-        //  [Authorize(Policy = "Isadmin")]
+      //  [AllowAnonymous]
+       [Authorize(Policy = "Isadmin")]
         public async Task<ActionResult<IEnumerable<User>>> GetUser([FromRoute] int userID)
         {
             //var User = _db.Users.Find(id);

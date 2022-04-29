@@ -23,7 +23,7 @@ export function Apps() {
             product => {
                 if (product.Productid === updatedProduct.Productid) {
                     return updatedProduct
-                } else { return product }
+                } else { return Product }
             }
         )
         setProducts(updatedProducts)

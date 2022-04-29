@@ -158,17 +158,17 @@ namespace Phase2_Submission.Controllers
 
         }
 
-        [AllowAnonymous]
-        [HttpPut]
-        //[Authorize(Policy = "Isadmin")]
-        public string Put(Order model)
-        {
-            _db.Order.Add(model);
-            _db.SaveChanges();
+        //[AllowAnonymous]
+        //[HttpPut("ByorderId/{model}")]
+        ////[Authorize(Policy = "Isadmin")]
+        //public string Put(Order model)
+        //{
+        //    _db.Orders.Add(model);
+        //    _db.SaveChanges();
 
-            return "Success";
+        //    return "Success";
 
-        }
+        //}
 
 
         //private User GetCurrentUser()

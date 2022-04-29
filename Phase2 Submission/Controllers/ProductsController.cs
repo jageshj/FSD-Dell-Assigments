@@ -35,13 +35,13 @@ namespace MumbaiPharma2.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IEnumerable<Product> GetProd()
+        public List<Product> GetProd()
         {
-            var Product = _db.Products
-            .Include(p => p.CartDetails)
-            .ToList();
+            //  var Product = _db.Products
 
-            return _db.Products;
+
+          return _db.Products.ToList();
+            //return _db.Products.Include(p => p.CartDetails).ToList(); 
             //return _db.Carts
             //  .Include(p => p.CartDetails)
             //.ToList(); 

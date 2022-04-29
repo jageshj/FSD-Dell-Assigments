@@ -1,6 +1,9 @@
 ﻿import React, { useState } from 'react'
+import Apps from './Apps'
 import Product from './Product'
 import EditProduct from './EditProduct'
+import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row, NavItem, NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 function Products({ products, onUpdateProduct }) {
 
@@ -61,27 +64,17 @@ function Products({ products, onUpdateProduct }) {
                 />) : null}
 
             <table>
-                <thead>
-                    <tr>
-                        <th>ProductId</th>
-                        <th>name</th>
-                        <th>CompanyName</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>ImageUrl</th>
-                        <th>Uses</th>
-                        <th>ExpireDate</th>
-                        <th>Modify Product</th>
-                    </tr>
-                </thead>
                 <tbody>
-                    {products.map(product => <Product
-                        key={product.productId}
-                        product={product}
+                    {products.map(products => <Product
+                        key={products.productId}
+                        product={products}
                         captureEdit={captureEdit}
                         changeEditState={changeEditState}
-                    />)}
+                    />
+                    )}
                 </tbody>
+
+                <NavLink tag={Link} className="text-dark" to="/ProductAdd">Create New Product</NavLink>
             </table>
         </div>
     )
