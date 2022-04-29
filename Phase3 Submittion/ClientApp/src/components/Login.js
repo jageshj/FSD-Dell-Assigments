@@ -71,7 +71,7 @@ export class Login extends Component {
 
                 else
 
-                    this.props.history.push("/Stage");
+                    this.props.history.push("/Dashboard");
 
             })
 

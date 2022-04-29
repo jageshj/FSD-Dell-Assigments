@@ -30,7 +30,7 @@ namespace Phase2_Submission.Model
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS01;Database=FSDAssignment;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server = localhost\\SQLEXPRESS01;Database=FSDAssignment;Trusted_Connection=True;MultipleActiveResultSets=true;Encrypt=false;");
             }
         }
 
@@ -52,7 +52,7 @@ namespace Phase2_Submission.Model
                 entity.ToTable("Cart");
 
                 entity.Property(e => e.CartId)
-                    .ValueGeneratedNever()
+                    //.ValueGeneratedNever()
                     .HasColumnName("CartID");
 
                 entity.Property(e => e.OwnerUserId).HasColumnName("OwnerUserID");
@@ -66,7 +66,7 @@ namespace Phase2_Submission.Model
             modelBuilder.Entity<CartDetail>(entity =>
             {
                 entity.Property(e => e.CartDetailId)
-                    .ValueGeneratedNever()
+                   // .ValueGeneratedNever()
                     .HasColumnName("CartDetailID");
 
                 entity.Property(e => e.CartId).HasColumnName("CartID");
@@ -98,7 +98,7 @@ namespace Phase2_Submission.Model
                 entity.ToTable("Order");
 
                 entity.Property(e => e.OrderId)
-                    .ValueGeneratedNever()
+                 //   .ValueGeneratedNever()
                     .HasColumnName("OrderID");
 
                 entity.Property(e => e.TotalAmount).HasColumnType("decimal(18, 2)");
@@ -116,7 +116,7 @@ namespace Phase2_Submission.Model
                 entity.ToTable("Product");
 
                 entity.Property(e => e.ProductId)
-                    .ValueGeneratedNever()
+                 //   .ValueGeneratedNever()
                     .HasColumnName("ProductID");
             });
 
@@ -125,7 +125,7 @@ namespace Phase2_Submission.Model
                 entity.ToTable("User");
 
                 entity.Property(e => e.UserId)
-                    .ValueGeneratedNever()
+                   // .ValueGeneratedNever()
                     .HasColumnName("UserID");
 
                 entity.Property(e => e.Email).IsRequired();

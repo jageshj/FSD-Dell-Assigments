@@ -1,26 +1,147 @@
 import React, { Component } from 'react';
 
-export class Home extends Component {
-  static displayName = Home.name;
+import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row, NavItem, NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
-  render () {
-    return (
-      <div>
-        <h1>Hello, world!</h1>
-        <p>Welcome to your new single-page application, built with:</p>
-        <ul>
-          <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-          <li><a href='https://facebook.github.io/react/'>React</a> for client-side code</li>
-          <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-        </ul>
-        <p>To help you get started, we have also set up:</p>
-        <ul>
-          <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-          <li><strong>Development server integration</strong>. In development mode, the development server from <code>create-react-app</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-          <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration produces minified, efficiently bundled JavaScript files.</li>
-        </ul>
-        <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
-      </div>
-    );
-  }
+export class Home extends Component {
+  //static displayName = Home.name;
+
+    constructor() {
+
+        super();
+
+        this.state = {
+            Email: '',
+            Password: ''
+        }
+
+        this.Password = this.Password.bind(this);
+
+        this.Email = this.Email.bind(this);
+
+        this.login = this.login.bind(this);
+
+    }
+
+    Email(event) {
+
+        this.setState({ Email: event.target.value })
+
+    }
+
+    Password(event) {
+
+        this.setState({ Password: event.target.value })
+
+    }
+
+    login(event) {
+
+        //   debugger;
+
+        fetch('http://localhost:11366/api/Users/authentication', {
+
+            method: 'POST',
+
+            headers: {
+
+                'Accept': 'application/json',
+
+                'Content-Type': 'application/json'
+
+            },
+
+            body: JSON.stringify({
+
+                email: this.state.Email,
+
+                password: this.state.Password
+
+            })
+
+        }).then((Response) => Response.json())
+
+            .then((result) => {
+
+                console.log(result);
+
+
+                if (result == 'User not found')
+
+                    alert('Invalid User');
+
+                else
+
+                    this.props.history.push("/Dashboard");
+
+            })
+
+    }
+
+    render() {
+        return (
+
+            < div className="app flex-row align-items-center" >
+
+                < Container >
+
+                    < Row className="justify-content-center" >
+
+                        < Col md="9" lg="7" xl="6" >
+
+
+                            < CardGroup >
+
+                                < Card className="p-2" >
+
+                                    < CardBody >
+
+                                        < Form >
+
+                                            < div class="row" className="mb-2 pageheading" >
+
+                                                < div class="col-sm-12 btn btn-primary" >
+
+                                                    Login
+
+                                                </div >
+
+                                            </div >
+
+                                            < InputGroup className="mb-3" >
+
+
+                                                < Input type="text" onChange={this.Email} placeholder="Enter Email" />
+
+                                            </InputGroup >
+
+                                            < InputGroup className="mb-4" >
+
+
+                                                < Input type="password" onChange={this.Password} placeholder="Enter Password" />
+
+                                            </InputGroup >
+
+                                            < Button onClick={this.login} color="success" block > Login</Button >
+                                            <NavLink tag={Link} className="text-dark" to="/Register">New User Signup</NavLink>
+
+                                        </Form >
+
+                                    </CardBody >
+
+                                </Card >
+
+                            </CardGroup >
+
+                        </Col >
+
+                    </Row >
+
+                </Container >
+
+            </div >
+
+        );
+
+    }
 }

@@ -51,14 +51,12 @@ namespace Phase2_Submission.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IEnumerable<User> GetUser()
+        public List<User> GetUser()
         {
-            var User = _db.Users
-             .Include(p => p.Carts)
-             .ToList();
-
-            return _db.Users;
            
+
+            return _db.Users.ToList();
+
         }
 
 

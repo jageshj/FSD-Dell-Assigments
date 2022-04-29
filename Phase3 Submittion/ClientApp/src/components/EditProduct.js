@@ -20,13 +20,13 @@ function EditProduct({ editForm, handleProductUpdate, handleChange }) {
             .then((result) => {
            //     console.log(result);
                 if (result > 0)
-                   this.props.history.pushState("/Stage");
+                    this.props.history.pushState("/Dashboard");
                     
                 else
                     alert('Sorrrrrry !!!! Un-authenticated User !!!!!')
             })
     }
-
+        
 
 
 
