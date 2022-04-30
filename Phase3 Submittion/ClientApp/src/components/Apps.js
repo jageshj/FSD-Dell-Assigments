@@ -21,7 +21,7 @@ export function Apps() {
     function onUpdateProduct(updatedProduct) {
         const updatedProducts = products.map(
             product => {
-                if (product.Productid === updatedProduct.Productid) {
+                if (product.productId === updatedProduct.productId) {
                     return updatedProduct
                 } else { return Product }
             }

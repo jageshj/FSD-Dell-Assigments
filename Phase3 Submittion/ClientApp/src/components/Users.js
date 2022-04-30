@@ -1,31 +1,34 @@
 ﻿import React, { useState } from 'react'
-import Apps from './Apps'
-import Product from './Product'
-import EditProduct from './EditProduct'
+import EditUser from './EditUser'
+import User from './User'
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import UserApps from './UserApps'
 
-function Products({ products, onUpdateProduct }) {
+function Users({ users, onUpdateUser }) {
 
     const [isEditing, setIsEditing] = useState(false);
 
 
 
     const [editForm, setEditForm] = useState({
-        productId: "",
-        name: "",
-        companyName: "",
-        price: 0,
-        quantity: 0,
-        imageUrl: "",
-        uses: "",
-        expireDate: "",
+        userId: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        isAdmin: false,
+        dateOfBirth: "",
+        phone: "",
+        address: "",
     })
 
 
-    function handleProductUpdate(updatedProduct) {
+    
+
+
+    function handleUserUpdate(updatedUser) {
         setIsEditing(false);
-        onUpdateProduct(updatedProduct);
+        onUpdateUser(updatedUser);
     }
 
 
@@ -37,18 +40,18 @@ function Products({ products, onUpdateProduct }) {
         })
     }
 
-    // needed logic for conditional rendering of the form - shows the Product you want when you want them, and hides it when you don't
-    function changeEditState(product) {
-        if (product.productId === editForm.productId) {
+    // needed logic for conditional rendering of the form - shows the User you want when you want them, and hides it when you don't
+    function changeEditState(user) {
+        if (user.userId === editForm.userId) {
             setIsEditing(isEditing => !isEditing) // hides the form
         } else if (isEditing === false) {
             setIsEditing(isEditing => !isEditing) // shows the form
         }
     }
 
-    // capture the Product you wish to edit, set to state
-    function captureEdit(clickedProduct) {
-        let filtered = products.filter(product => product.productId === clickedProduct.productId)
+    // capture the User you wish to edit, set to state
+    function captureEdit(clickedUser) {
+        let filtered = users.filter(user => user.userId === clickedUser.userId)
         setEditForm(filtered[0])
     }
 
@@ -57,27 +60,27 @@ function Products({ products, onUpdateProduct }) {
     return (
         <div>
             {isEditing ?
-                (<EditProduct
+                (<EditUser
                     editForm={editForm}
                     handleChange={handleChange}
-                    handleProductUpdate={handleProductUpdate}
+                    handleUserUpdate={handleUserUpdate}
                 />) : null}
 
             <table>
                 <tbody>
-                    {products.map(products => <Product
-                        key={products.productId}
-                        product={products}
+                    {users.map(users => <User
+                        key={users.userId}
+                        user={users}
                         captureEdit={captureEdit}
                         changeEditState={changeEditState}
                     />
                     )}
                 </tbody>
-                <button> Submit Order </button>
-                <NavLink tag={Link} className="text-dark" to="/ProductAdd">Create New Product</NavLink>
+
+                <NavLink tag={Link} className="text-dark" to="/Register">Create New User</NavLink>
             </table>
         </div>
     )
 }
 
-export default Products
+export default Users

@@ -42,6 +42,9 @@ function Product({ product, product: { productId, name, companyName, price, quan
                         >
                             Edit
                         </button>
+                        <td> <button> Delete </button></td>
+                        <td> <button> Add to Order </button></td>
+
                     </td>
                 </tr>
 

@@ -10,7 +10,7 @@ export class Dashboard extends Component {
                 <h1>Welcome to Mumbai Pharma</h1>
                 <p>Administration:</p>
                 <ul>
-                    <NavLink tag={Link} className="text-dark" to="/FetchUser">User Administration</NavLink>
+                    <NavLink tag={Link} className="text-dark" to="/EditUser">User Administration</NavLink>
                     <NavLink tag={Link} className="text-dark" to="/Apps">Product Administration</NavLink>
                 </ul>
                 <p>Order Process</p>
